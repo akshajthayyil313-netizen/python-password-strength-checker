@@ -1,42 +1,52 @@
-import re
+Password Strength Checker – Python Project
 
-# password strength  check conditions:
-# min 8 chars, digit, uppercase, lowercase, special char
+This project is a Python-based Password Strength Checker designed to validate and rate the security level of user-entered passwords. It checks a password against essential security criteria by verifying its length, structure, and character composition. The tool runs in an interactive loop, giving immediate feedback and guiding users toward creating stronger, more secure passwords.
 
-def check_password_strength(password):
-    if len(password) < 8:
-        return "Weak: password must be at least 8 characters"
-    
-    if not any(char.isdigit() for char in password):
-        return "Weak: password must contain a digit"
-    
-    if not any(char.isupper() for char in password):
-        return "Weak: password must contain an uppercase letter"
-    
-    if not any(char.islower() for char in password):
-        return "Weak: password must contain a lowercase letter"
-    
-    if not re.search(r'[!@#$%^&*(){}<>.?]', password):
-        return "Medium: password should contain a special character"
-    
-    return "Strong: Your password is secured!"
+Key Features
 
+Minimum Length Validation
+Ensures the password contains at least 8 characters.
 
-def password_checker():
-    print("Welcome! to the password strength checker")
+Character Type Detection
+Checks for the presence of digits, uppercase letters, lowercase letters, and special characters.
 
-    while True:
-        password = input("Enter your password (or type 'exit' to quit): ")
+Regex-Based Special Character Check
+Uses Python’s re module to detect special symbols.
 
-        if password.lower() == 'exit':
-            print("Thank you for using this tool")
-            break
+Password Strength Classification
+Categorizes input as Weak, Medium, or Strong based on missing conditions.
 
-        result = check_password_strength(password)
-        print(result)
+Interactive CLI Interface
+Simple command-line tool that runs continuously until the user types exit.
 
+Tech Stack
 
-# Run the password checker tool
-if __name__ == "__main__":
-    password_checker()
+Python 3
 
+Regular Expressions (re module)
+
+Use Cases
+
+Beginners learning Python loops, functions, and conditional logic.
+
+Understanding validation workflows and text processing with regex.
+
+Practical introduction to cybersecurity basics and password policies.
+
+Ideal for students building automation or data-related portfolio projects.
+
+How to Run
+
+Clone or download the repository.
+
+Run this command in your terminal:
+
+python password_checker.py
+
+Future Enhancements (Optional)
+
+Add color-coded output for better visual feedback.
+
+Save password strength results to a CSV or log file.
+
+Develop a GUI using Tkinter or build a simple web version using Flask.
