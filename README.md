@@ -1,33 +1,42 @@
-This project is a Python-based **Password Strength Checker** that validates user-entered passwords against essential security rules. It checks for minimum length, numeric characters, uppercase and lowercase letters, and the presence of special characters. The tool runs in a loop, providing real-time feedback until the user exits.
+import re
 
-### **Key Features**
+# password strength  check conditions:
+# min 8 chars, digit, uppercase, lowercase, special char
 
-* Validates password length (minimum 8 characters).
-* Checks for numeric, uppercase, and lowercase characters.
-* Detects special characters using regular expressions.
-* Provides strength classification: Weak, Medium, Strong.
-* Simple, interactive command-line interface.
+def check_password_strength(password):
+    if len(password) < 8:
+        return "Weak: password must be at least 8 characters"
+    
+    if not any(char.isdigit() for char in password):
+        return "Weak: password must contain a digit"
+    
+    if not any(char.isupper() for char in password):
+        return "Weak: password must contain an uppercase letter"
+    
+    if not any(char.islower() for char in password):
+        return "Weak: password must contain a lowercase letter"
+    
+    if not re.search(r'[!@#$%^&*(){}<>.?]', password):
+        return "Medium: password should contain a special character"
+    
+    return "Strong: Your password is secured!"
 
-### **Tech Stack**
 
-* Python 3
-* Regular Expressions (re module)
+def password_checker():
+    print("Welcome! to the password strength checker")
 
-### **Use Cases**
+    while True:
+        password = input("Enter your password (or type 'exit' to quit): ")
 
-* Learning Python conditionals and loops
-* Understanding regex for text validation
-* Beginner cybersecurity concepts
-* Portfolio project for data/automation learners
+        if password.lower() == 'exit':
+            print("Thank you for using this tool")
+            break
 
-### **How to Run**
+        result = check_password_strength(password)
+        print(result)
 
-```bash
-python password_checker.py
-```
 
-### **Future Enhancements (Optional Section)**
+# Run the password checker tool
+if __name__ == "__main__":
+    password_checker()
 
-* Add color-based output (green/yellow/red)
-* Export password checks to a CSV or log file
-* Build a GUI using Tkinter or a web UI using Flask
